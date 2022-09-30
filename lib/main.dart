@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    title: 'My App',
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -45,20 +48,66 @@ class MyApp extends StatelessWidget {
           child: Text('Yo!'),
         ),
 
-        body: ListView.builder(
-          itemBuilder: (_, index) {
-            return Container(
-              color: randomColor(),
-              width: 500,
-              height: 500,
-            );
-          },
-        ),
+        body: Stack(
+          children: [
+            ListView.builder(
+              addAutomaticKeepAlives: false,
+              itemBuilder: (_, index) {
+                return Container(
+                  color: randomColor(),
+                  width: 1000,
+                  height: 500,
+                  // child: Center(
+                  //   child: Text(
+                  //     '$count',
+                  //     style: const TextStyle(fontSize: 60),
+                  //   ),
+                  // ),
+                );
+              },
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const AboutScreen()
+                    ),
+                  );
+                },
+                child: const Text('Navigate'),
+              ),
+            )
+          ],
+        )
       ),
     );
   }
 
   randomColor() {
     return Colors.primaries[Random().nextInt(Colors.primaries.length)];
+  }
+}
+
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Second Route"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+// Removing SecondRoute
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
   }
 }
