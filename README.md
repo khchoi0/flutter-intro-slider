@@ -1,4 +1,4 @@
-# intro_slider_app
+# touch-flutter
 
 A new Flutter project.
 
