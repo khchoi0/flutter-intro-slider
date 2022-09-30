@@ -5,8 +5,28 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  int count = 0;
+
+  @override
+  void initState() {
+    // TODO: fetch data from Firebase
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +40,9 @@ class MyApp extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
-            print('pressed!');
+            setState(() {
+              count++;
+            });
           },
         ),
 
@@ -46,11 +68,18 @@ class MyApp extends StatelessWidget {
         ),
 
         body: ListView.builder(
+          addAutomaticKeepAlives: false,
           itemBuilder: (_, index) {
             return Container(
               color: randomColor(),
-              width: 500,
+              width: 1000,
               height: 500,
+              child: Center(
+                child: Text(
+                  '$count',
+                  style: const TextStyle(fontSize: 60),
+                ),
+              ),
             );
           },
         ),
