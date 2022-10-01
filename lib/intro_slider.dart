@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intro_slider_app/indicator.dart';
 
-class IntroSlider extends StatelessWidget {
+class IntroSlider extends StatefulWidget {
   const IntroSlider({Key? key}) : super(key: key);
+
+  @override
+  State<IntroSlider> createState() => _IntroSliderState();
+}
+
+class _IntroSliderState extends State<IntroSlider> {
+  PageController controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -9,24 +17,31 @@ class IntroSlider extends StatelessWidget {
       body: Stack(
         children: [
           PageView(
+            controller: controller,
             children: [
               EachPage('assets/landing_a_share.jpg', 'landing_a_share'),
-              EachPage('assets/landing_b_zam.jpg', 'landing_d_zam'),
-              EachPage('assets/landing_c_bam.jpg', 'landing_d_bam'),
+              EachPage('assets/landing_b_zam.jpg', 'landing_b_zam'),
+              EachPage('assets/landing_c_bam.jpg', 'landing_c_bam'),
               EachPage('assets/landing_d_dfile.jpg', 'landing_d_dfile'),
             ],
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Row(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child:  ElevatedButton(onPressed: (){}, child: Text('Register'))),
-                ),
-                Expanded(child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child:  ElevatedButton(onPressed: (){}, child: Text('Login'))),
+                Indicator(controller, 4),
+                Row(
+                  children: [
+                    Expanded(child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child:  ElevatedButton(onPressed: (){}, child: const Text('Register'))),
+                    ),
+                    Expanded(child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child:  ElevatedButton(onPressed: (){}, child: const Text('Login'))),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -38,9 +53,8 @@ class IntroSlider extends StatelessWidget {
 }
 
 class EachPage extends StatelessWidget {
-  String imagePath, tagLine;
-
   EachPage(this.imagePath, this.tagLine, {Key? key}) : super(key: key);
+  String imagePath, tagLine;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +64,7 @@ class EachPage extends StatelessWidget {
         Image.asset(imagePath, width: 500, height: 500),
         Text(
             tagLine,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         )
       ],
     );
