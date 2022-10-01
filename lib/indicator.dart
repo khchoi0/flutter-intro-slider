@@ -1,9 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Indicator extends StatefulWidget {
-  Indicator(this.controller, this.itemCount, {Key? key}) : super(key: key);
-  PageController controller;
-  int itemCount;
+  const Indicator(this.controller, this.itemCount, {Key? key}) : super(key: key);
+  final PageController controller;
+  final int itemCount;
 
   @override
   State<Indicator> createState() => _IndicatorState();
@@ -25,8 +26,10 @@ class _IndicatorState extends State<Indicator> {
 
   @override
   Widget build(BuildContext context) {
-    print('Refreshing the layout');
-    return Container(
+    if (kDebugMode) {
+      print('Refreshing the layout');
+    }
+    return SizedBox(
       height: 50,
       child: ListView.builder(
         shrinkWrap: true,
@@ -59,7 +62,7 @@ class _IndicatorState extends State<Indicator> {
           width: w,
           height: h,
           color: color,
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 100),
         ),
       ),
     );

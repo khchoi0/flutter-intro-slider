@@ -18,7 +18,7 @@ class _IntroSliderState extends State<IntroSlider> {
         children: [
           PageView(
             controller: controller,
-            children: [
+            children: const [
               EachPage('assets/landing_a_share.jpg', 'landing_a_share'),
               EachPage('assets/landing_b_zam.jpg', 'landing_b_zam'),
               EachPage('assets/landing_c_bam.jpg', 'landing_c_bam'),
@@ -53,8 +53,8 @@ class _IntroSliderState extends State<IntroSlider> {
 }
 
 class EachPage extends StatelessWidget {
-  EachPage(this.imagePath, this.tagLine, {Key? key}) : super(key: key);
-  String imagePath, tagLine;
+  const EachPage(this.imagePath, this.tagLine, {Key? key}) : super(key: key);
+  final String imagePath, tagLine;
 
   @override
   Widget build(BuildContext context) {
