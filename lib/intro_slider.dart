@@ -19,10 +19,10 @@ class _IntroSliderState extends State<IntroSlider> {
           PageView(
             controller: controller,
             children: const [
-              EachPage('assets/landing_a_share.jpg', 'landing_a_share'),
-              EachPage('assets/landing_b_zam.jpg', 'landing_b_zam'),
-              EachPage('assets/landing_c_bam.jpg', 'landing_c_bam'),
-              EachPage('assets/landing_d_dfile.jpg', 'landing_d_dfile'),
+              EachPage('assets/landing_a.jpg', 'landing_a'),
+              EachPage('assets/landing_b.jpg', 'landing_b'),
+              EachPage('assets/landing_c.jpg', 'landing_c'),
+              EachPage('assets/landing_d.jpg', 'landing_d'),
             ],
           ),
           Align(
