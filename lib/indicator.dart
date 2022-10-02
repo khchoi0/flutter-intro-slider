@@ -1,16 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class Indicator extends StatefulWidget {
-  const Indicator(this.controller, this.itemCount, {Key? key}) : super(key: key);
+class PVIndicators extends StatefulWidget {
+  const PVIndicators(this.controller, this.itemCount, {Key? key}) : super(key: key);
   final PageController controller;
   final int itemCount;
 
   @override
-  State<Indicator> createState() => _IndicatorState();
+  State<PVIndicators> createState() => _PVIndicatorsState();
 }
 
-class _IndicatorState extends State<Indicator> {
+class _PVIndicatorsState extends State<PVIndicators> {
 
   @override
   void initState() {
@@ -31,51 +31,29 @@ class _IndicatorState extends State<Indicator> {
     }
     return SizedBox(
       height: 50,
-      child: ListView.builder(
+      child:
+      ListView(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: widget.itemCount,
-        itemBuilder: (context, index) {
-          return _createIndicatorElements(index);
-        },
-      ),
-    );
-  }
-
-  Widget _createIndicatorElements(index) {
-    double w = 10;
-    double h = 10;
-    MaterialColor color = Colors.grey;
-
-    if(widget.controller.page==index) {
-      w = 15;
-      h = 15;
-      color = Colors.blueGrey;
-    }
-
-    return SizedBox(
-      height: 16,
-      width: 16,
-      child: Center(
-        child: AnimatedContainer(
-          margin: const EdgeInsets.all(5),
-          width: w,
-          height: h,
-          color: color,
-          duration: const Duration(milliseconds: 100),
-        ),
-      ),
+        children: _buildPageIndicator(widget.itemCount),
+      )
     );
   }
 
   _handleChanges() {
-    setState(() {
-
-    });
+    setState(() {});
   }
-  
+
+  List<Widget> _buildPageIndicator(int itemCount) {
+    List<Widget> list = [];
+    for (int i=0; i<itemCount; i++) {
+      list.add(i == widget.controller.page ? _indicator(true) : _indicator(false));
+    }
+    return list;
+  }
+
   Widget _indicator(bool isActive) {
-    return Container(
+    return SizedBox(
       height: 10,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),

@@ -30,7 +30,7 @@ class _IntroSliderState extends State<IntroSlider> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Indicator(controller, 4),
+                PVIndicators(controller, 4),
                 Row(
                   children: [
                     Expanded(child: Padding(
