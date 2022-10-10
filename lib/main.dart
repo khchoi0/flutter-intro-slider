@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intro_slider_app/intro_slider.dart';
+import 'package:intro_slider_app/page_view_item.dart';
 import 'package:intro_slider_app/onboarding.dart';
 
 void main() {
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.grey[50],
       ),
       home: const Onboarding(),
     );

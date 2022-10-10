@@ -30,7 +30,7 @@ class _PVIndicatorsState extends State<PVIndicators> {
       print('Refreshing the layout');
     }
     return SizedBox(
-      height: 50,
+      height: 20,
       child:
       ListView(
         shrinkWrap: true,
@@ -54,7 +54,6 @@ class _PVIndicatorsState extends State<PVIndicators> {
 
   Widget _indicator(bool isActive) {
     return SizedBox(
-      height: 10,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         margin: const EdgeInsets.symmetric(horizontal: 4.0),
